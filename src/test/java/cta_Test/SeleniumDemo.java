@@ -23,7 +23,7 @@ private OcePortal_Parent OcePortal_Parent;
     @Test
 	@Given("^Existing Customer logs into Swisscom dashboard$")
 	
-	public void LaunchUrl() {	
+	public void LaunchUrl() throws Exception  {	
     	forceInjection(CurrentTextContext.getContext());
 	//OcePortal_Parent Parent = new OcePortal_Parent();
 		OcePortal_Parent.Login();

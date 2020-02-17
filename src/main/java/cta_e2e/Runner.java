@@ -8,7 +8,7 @@ import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 
 @CucumberOptions(
-		features = "C:\\Users\\animesh.kumar.sinha\\eclipse-workspace\\Selenium\\src\\main\\java\\cta_Features",
+		features = "C:\\Selenium_Codes\\Selenium\\src\\main\\java\\cta_Features",
 		
 		glue= {
 			"cta_e2e"

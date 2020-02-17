@@ -72,13 +72,16 @@ private final static String fileName = "C:\\Selenium_Codes\\Selenium\\resource\\
 		Class<Parser> clazz = Parser.class;
 		RuntimeOptionsFactory runtimeOptionsFactory = new RuntimeOptionsFactory(clazz);
 		RuntimeOptions runtimeOptions = runtimeOptionsFactory.create();
+		System.out.println("Runtime printed is: " +runtimeOptions);
 		ClassLoader classLoader = clazz.getClassLoader();
 		ResourceLoader resourceLoader = new MultiLoader(classLoader);
+		System.out.println("resourceLoader printed is: "+resourceLoader);
 		ClassFinder classFinder = new ResourceLoaderClassFinder(resourceLoader, classLoader);
 		Map<String, Method> methodsAnnoted = scanMethodsForCucumberAnnotations(runtimeOptions, classFinder);
 		FeatureLoader featureLoader = new FeatureLoader(resourceLoader);
 		FeaturePathFeatureSupplier featureSupplier = new FeaturePathFeatureSupplier(featureLoader, runtimeOptions);
 		List<CucumberFeature> features = featureSupplier.get();
+		System.out.println("the feature is: "+features);
 		
 		 //INIZIALIZATION
         int foundMatchCount = 0;
@@ -99,6 +102,7 @@ private final static String fileName = "C:\\Selenium_Codes\\Selenium\\resource\\
 				for (Step step : steps) {
 					System.out.println("Step "+ step.getText());
 					Set<String> annotationTextKeyset = methodsAnnoted.keySet();
+					System.out.println(annotationTextKeyset);
 					boolean foundMatch = false;
 					for (String annotationText : annotationTextKeyset) {
 						if(annotationText.contains(step.getText())) {
@@ -133,6 +137,7 @@ private final static String fileName = "C:\\Selenium_Codes\\Selenium\\resource\\
 	private static Map<String, Method> scanMethodsForCucumberAnnotations(RuntimeOptions runtimeoptions,
 			ClassFinder classFinder) {
 		List<URI> gluePaths = runtimeoptions.getGlue();
+		//System.out.println("I am here"+gluePaths);
 		Map<String, Method> methodsAnnoted = new HashMap<>();
 		for (URI gluePath : gluePaths) {
             for (Class<?> glueCodeClass : classFinder.getDescendants(Object.class, gluePath)) {
@@ -238,7 +243,9 @@ private final static String fileName = "C:\\Selenium_Codes\\Selenium\\resource\\
 	
 	 public static void generateJmxFile(List<JmeterScenario> scenariosToExecute) throws DocumentException, IOException {
 	    	SAXReader reader = new SAXReader();
+	    	//System.out.println("I am here");
 	    	Document document = reader.read(new File(fileName));
+	    	//System.out.println("I am here1");
 	        List<Node> elements = document.selectNodes("//*[name() = 'ThreadGroup']");
 	        
 	      //SHOULD BE ONE FOR NOW
@@ -280,7 +287,7 @@ private final static String fileName = "C:\\Selenium_Codes\\Selenium\\resource\\
 	        	
 	        }
 	        
-	        XMLWriter writer = new XMLWriter(new FileWriter(new File("C:\\Users\\animesh.kumar.sinha\\eclipse-workspace\\Selenium\\resource\\LoopExample_modified.jmx")));
+	        XMLWriter writer = new XMLWriter(new FileWriter(new File("C:\\Selenium_Codes\\Selenium\\resource\\LoopExample_modified.jmx")));
 	        writer.write(document);
 	        writer.close();
 	 }

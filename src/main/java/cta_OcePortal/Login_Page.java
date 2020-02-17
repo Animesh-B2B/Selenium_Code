@@ -1,5 +1,7 @@
 package cta_OcePortal;
 
+import org.openqa.selenium.Dimension;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -11,11 +13,16 @@ public class Login_Page {
 		this.driver=driver;
 	}
 	
-	 public void Login() {	        
+	 public void Login() throws Exception {	        
 	      
-	        driver.get("https://vega.test2.swisscom.ch/myswisscom");	     
-	        driver.findElement(By.xpath("//*[@id='username']"));
-	        driver.findElement(By.xpath("//*[@id='username']")).sendKeys("abvcf");
+	       driver.get("https://vega.test2.swisscom.ch/myswisscom");		      
+	       Thread.sleep(10000);
+	       driver.findElement(By.xpath("//*[@id='username']")).sendKeys(TestDataProvider.getUser());
+	       driver.findElement(By.xpath("//input[@id='anmelden']")).click();
+	       Thread.sleep(5000);
+	       driver.findElement(By.xpath("//input[@id='password']")).sendKeys(TestDataProvider.getPass());
+	       driver.findElement(By.xpath("//button[@id='anmelden']")).click();
+	     //  driver.close();
 	       
 	    }
 	
