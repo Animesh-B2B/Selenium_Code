@@ -18,10 +18,10 @@ public class Login_Page {
 	       driver.get("https://vega.test2.swisscom.ch/myswisscom");		      
 	       Thread.sleep(10000);
 	       driver.findElement(By.xpath("//*[@id='username']")).sendKeys(TestDataProvider.getUser());
-	       driver.findElement(By.xpath("//input[@id='anmelden']")).click();
+	       driver.findElement(By.xpath("//input[@id='continueButton']")).click();
 	       Thread.sleep(5000);
 	       driver.findElement(By.xpath("//input[@id='password']")).sendKeys(TestDataProvider.getPass());
-	       driver.findElement(By.xpath("//button[@id='anmelden']")).click();
+	       driver.findElement(By.xpath("//button[@id='submitButton']")).click();
 	     //  driver.close();
 	       
 	    }
